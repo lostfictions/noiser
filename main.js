@@ -58,14 +58,17 @@ function createWindow(cb) {
 const e = express()
 
 e.get('/', (req, res) => {
-  createWindow((err, path) => {
+  createWindow((err, filePath) => {
     console.log('req done!')
     if(err) {
       res.status(500).send(err)
     }
     else {
-      res.set('Content-Type', 'application/download')
-      res.sendFile(path)
+      res.set({
+        'Content-Type': 'application/download',
+        'Content-Disposition': 'attachment; filename=' + path.basename(filePath)
+      })
+      res.sendFile(filePath)
     }
   })
 })
