@@ -105,13 +105,13 @@ function split(buffer) {
   while(count--) {
     const url = URL.createObjectURL(bufferToWave(buffer, offset, block))
 
-    console.log('url: ' + url)
+    // console.log('url: ' + url)
 
-    window.location = url
+    // window.location = url
 
-    // const iframe = document.createElement('iframe')
-    // iframe.src = url
-    // document.body.appendChild(iframe)
+    const iframe = document.createElement('iframe')
+    iframe.src = url
+    document.body.appendChild(iframe)
 
     // const audio = new Audio(url)
     // audio.controls = true
