@@ -64,6 +64,7 @@ e.get('/', (req, res) => {
       res.status(500).send(err)
     }
     else {
+      res.set('Content-Type', 'application/download')
       res.sendFile(path)
     }
   })
