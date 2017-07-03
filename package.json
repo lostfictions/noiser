@@ -7,6 +7,9 @@
   "scripts": {
     "start": "electron main.js"
   },
+  "engines": {
+    "node": ">=8"
+  },
   "author": "s",
   "license": "GPL3",
   "dependencies": {
