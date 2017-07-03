@@ -37,7 +37,7 @@ for(let i = 0; i < amt; i++) {
     // const gainAmt = 0.5
     lfoGain.gain.value = Math.pow(4.088, Math.round(1 + Math.random() * 10))
 
-    console.log(`[${i}] lfo freq ${lfo.frequency.value} - ${lfoGain.gain.value}`)
+    // console.log(`[${i}] lfo freq ${lfo.frequency.value} - ${lfoGain.gain.value}`)
     lfo.connect(lfoGain)
     // lfoGain.connect(gain.gain)
     lfoGain.connect(osc.frequency)
@@ -52,7 +52,7 @@ for(let i = 0; i < amt; i++) {
     const lfoGain = ctx.createGain()
     lfoGain.gain.value = Math.pow(4.088, Math.round(1 + Math.random() * 10))
 
-    console.log(`[${i}] lfo detune ${lfo.frequency.value} - ${lfoGain.gain.value}`)
+    // console.log(`[${i}] lfo detune ${lfo.frequency.value} - ${lfoGain.gain.value}`)
     lfo.connect(lfoGain)
     // lfoGain.connect(gain.gain)
     lfoGain.connect(osc.detune)
@@ -71,8 +71,6 @@ async function doRender() {
   // b.buffer = buff
   // b.connect(c.destination)
   // b.start()
-
-  // ctx.suspend(2).then(() => console.log('suspended'))
 
   split(buff)
 }
@@ -94,34 +92,16 @@ function split(buffer) {
 
   let count = Math.floor(duration / segmentLen)
 
-  // console.dir({
-  //   duration,
-  //   segmentLen,
-  //   count
-  // })
-
   let offset = 0
 
   while(count--) {
     const url = URL.createObjectURL(bufferToWave(buffer, offset, block))
-
-    // console.log('url: ' + url)
 
     // window.location = url
 
     const iframe = document.createElement('iframe')
     iframe.src = url
     document.body.appendChild(iframe)
-
-    // const audio = new Audio(url)
-    // audio.controls = true
-    // audio.volume = 0.5
-    // document.body.appendChild(audio)
-
-    // const idoc = iframe.contentWindow.document
-    // idoc.open()
-    // idoc.write(html)
-    // idoc.close()
 
     offset += block
   }

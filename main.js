@@ -17,8 +17,6 @@ app.on('window-all-closed', () => {})
 const windows = new Set()
 
 function createWindow(cb) {
-  console.log('creating browser window...')
-
   const win = new BrowserWindow({ show: false })
 
   windows.add(win)
@@ -29,14 +27,11 @@ function createWindow(cb) {
     slashes: true
   }))
 
-  // win.webContents.openDevTools()
-
   win.on('closed', () => {
     windows.delete(win)
   })
 
-  win.webContents.session.once('will-download', (event, item, webContents) => {
-    console.log('preparing download...')
+  win.webContents.session.once('will-download', (event, item) => {
     const path = `/tmp/${getId()}.wav`
     item.setSavePath(path)
     item.once('done', (event, state) => {
@@ -46,7 +41,6 @@ function createWindow(cb) {
         cb(err)
       }
       else {
-        console.log('download done')
         cb(null, path)
       }
       win.close()
@@ -59,7 +53,6 @@ const e = express()
 
 e.get('/', (req, res) => {
   createWindow((err, filePath) => {
-    console.log('req done!')
     if(err) {
       res.status(500).send(err)
     }
