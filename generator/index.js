@@ -94,16 +94,18 @@ function split(buffer) {
 
   let count = Math.floor(duration / segmentLen)
 
-  console.dir({
-    duration,
-    segmentLen,
-    count
-  })
+  // console.dir({
+  //   duration,
+  //   segmentLen,
+  //   count
+  // })
 
   let offset = 0
 
   while(count--) {
     const url = URL.createObjectURL(bufferToWave(buffer, offset, block))
+
+    console.log('url: ' + url)
 
     window.location = url
 
