@@ -1,0 +1,20 @@
+{
+  "name": "noiser",
+  "version": "1.0.1",
+  "description": "noises",
+  "private": true,
+  "main": "main.js",
+  "scripts": {
+    "start": "electron main.js"
+  },
+  "author": "s",
+  "license": "GPL3",
+  "dependencies": {
+    "electron": "^1.6.11",
+    "express": "^4.15.3"
+  },
+  "devDependencies": {
+    "@types/node": "^8.0.7",
+    "nodemon": "^1.11.0"
+  }
+}
